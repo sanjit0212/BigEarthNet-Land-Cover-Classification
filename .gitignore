@@ -1,0 +1,21 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+
+# Scala / SBT
+target/
+project/target/
+project/project/target/
+.bloop/
+.metals/
+
+# VS Code
+.vscode/
+
+# Data Files & Results
+bigearthnet_subset/
+metadata.parquet
+*.log
+
+# Keep documentation and small CSVs if desired, but explicitly ignore the massive raw data
