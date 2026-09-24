@@ -1,0 +1,52 @@
+{
+  "n_patches": 480038,
+  "s1_counts": {
+    "train": 240019,
+    "validation": 120010,
+    "test": 120009
+  },
+  "s2_counts": {
+    "train": 237871,
+    "validation": 122342,
+    "test": 119825
+  },
+  "s3_fold_sizes": {
+    "0": 95896,
+    "1": 95921,
+    "2": 96015,
+    "3": 96121,
+    "4": 96085
+  },
+  "s3_tiles_per_fold": {
+    "0": 10,
+    "1": 11,
+    "2": 11,
+    "3": 11,
+    "4": 11
+  },
+  "s4_fold_sizes": {
+    "Finland": 155227,
+    "Portugal": 89792,
+    "Serbia": 73385,
+    "Lithuania": 48365,
+    "Ireland": 48326,
+    "Austria": 43797,
+    "Belgium": 11196,
+    "Switzerland": 4874,
+    "Luxembourg": 3460,
+    "Kosovo": 1616
+  },
+  "rarest_class_s3_fold_spread": {
+    "Coastal wetlands": 5,
+    "Beaches, dunes, sands": 5
+  },
+  "train_coverage_violations": [
+    {
+      "regime": "S4",
+      "fold": "Portugal",
+      "label": "Agro-forestry areas",
+      "train_positives": 0
+    }
+  ],
+  "note": "S4 violation for label='Agro-forestry areas' fold='Portugal' is a real, unavoidable data limitation: all 33,181 positive patches for this class are in Portugal, so holding Portugal out zeroes its training signal. This is expected and should be reported, not treated as a pipeline bug."
+}

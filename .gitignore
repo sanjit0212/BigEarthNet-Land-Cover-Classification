@@ -17,5 +17,11 @@ project/project/target/
 bigearthnet_subset/
 metadata.parquet
 *.log
+BigEarthNet-S2.tar.zst
+features/
+results/predictions/
+state/
 
 # Keep documentation and small CSVs if desired, but explicitly ignore the massive raw data
+# (results/*.json summaries, results/splits.parquet, and results/figures/ ARE tracked --
+# only the large per-run raw prediction parquets under results/predictions/ are excluded)

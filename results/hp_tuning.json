@@ -1,0 +1,8 @@
+{
+  "LR_regParam=0.001": 0.5325769591891247,
+  "LR_regParam=0.01 (baseline)": 0.5033284289383525,
+  "LR_regParam=0.1": 0.4506625430302882,
+  "RF_numTrees=50,maxDepth=10 (baseline)": 0.608888808157527,
+  "RF_numTrees=50,maxDepth=15": 0.5648843145197564,
+  "RF_numTrees=100,maxDepth=10": 0.6092846908678432
+}

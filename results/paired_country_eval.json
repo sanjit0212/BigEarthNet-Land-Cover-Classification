@@ -1,0 +1,153 @@
+{
+  "method_note": "Same-region paired evaluation: for each country, the S2 model (trained WITH that country) and the S4-fold model (trained WITHOUT it) are both scored on the identical S2-test patch subset lying in that country. P(y) is held fixed by construction, so any gap cannot be a label-prior-shift artifact.",
+  "per_country": {
+    "Finland": {
+      "n_shared_patches": 40802,
+      "n_classes_used_ap": 15,
+      "macro_AP_in_training": 0.4339495505586976,
+      "macro_AP_held_out": 0.3077604381736952,
+      "delta_AP_points": 12.61891123850024,
+      "macro_AUROC_in_training": 0.8426788420375303,
+      "macro_AUROC_held_out": 0.784774528198651,
+      "delta_AUROC_points": 5.790431383887928
+    },
+    "Portugal": {
+      "n_shared_patches": 23209,
+      "n_classes_used_ap": 18,
+      "macro_AP_in_training": 0.3006358126738881,
+      "macro_AP_held_out": 0.25850593886383816,
+      "delta_AP_points": 4.212987381004996,
+      "macro_AUROC_in_training": 0.7119823561853091,
+      "macro_AUROC_held_out": 0.6551094642802266,
+      "delta_AUROC_points": 5.687289190508249
+    },
+    "Serbia": {
+      "n_shared_patches": 18512,
+      "n_classes_used_ap": 14,
+      "macro_AP_in_training": 0.3861940030593237,
+      "macro_AP_held_out": 0.3408249380966192,
+      "delta_AP_points": 4.536906496270454,
+      "macro_AUROC_in_training": 0.7660918360909446,
+      "macro_AUROC_held_out": 0.7077541374097768,
+      "delta_AUROC_points": 5.833769868116779
+    },
+    "Lithuania": {
+      "n_shared_patches": 13067,
+      "n_classes_used_ap": 16,
+      "macro_AP_in_training": 0.47910019370830337,
+      "macro_AP_held_out": 0.47028767675459887,
+      "delta_AP_points": 0.8812516953704497,
+      "macro_AUROC_in_training": 0.7465585487911812,
+      "macro_AUROC_held_out": 0.7388802907214804,
+      "delta_AUROC_points": 0.7678258069700794
+    },
+    "Ireland": {
+      "n_shared_patches": 13157,
+      "n_classes_used_ap": 18,
+      "macro_AP_in_training": 0.3507474398929043,
+      "macro_AP_held_out": 0.3373427939404522,
+      "delta_AP_points": 1.340464595245211,
+      "macro_AUROC_in_training": 0.8243509570181846,
+      "macro_AUROC_held_out": 0.8051779233157852,
+      "delta_AUROC_points": 1.9173033702399422
+    },
+    "Austria": {
+      "n_shared_patches": 8176,
+      "n_classes_used_ap": 15,
+      "macro_AP_in_training": 0.41869182826255175,
+      "macro_AP_held_out": 0.40391379417078244,
+      "delta_AP_points": 1.477803409176931,
+      "macro_AUROC_in_training": 0.7700398297073422,
+      "macro_AUROC_held_out": 0.7476509373929363,
+      "delta_AUROC_points": 2.2388892314405884
+    },
+    "Belgium": {
+      "n_shared_patches": 142,
+      "n_classes_used_ap": 10,
+      "macro_AP_in_training": 0.6103639093746482,
+      "macro_AP_held_out": 0.6066557490727036,
+      "delta_AP_points": 0.3708160301944652,
+      "macro_AUROC_in_training": 0.7580496022288112,
+      "macro_AUROC_held_out": 0.7549941569547455,
+      "delta_AUROC_points": 0.305544527406576
+    },
+    "Switzerland": {
+      "n_shared_patches": 2039,
+      "n_classes_used_ap": 14,
+      "macro_AP_in_training": 0.4108412150162786,
+      "macro_AP_held_out": 0.40810946315016555,
+      "delta_AP_points": 0.27317518661130746,
+      "macro_AUROC_in_training": 0.7170230127362599,
+      "macro_AUROC_held_out": 0.7234267866766728,
+      "delta_AUROC_points": -0.6403773940412916
+    },
+    "Luxembourg": {
+      "n_shared_patches": 441,
+      "n_classes_used_ap": 12,
+      "macro_AP_in_training": 0.5011591505603136,
+      "macro_AP_held_out": 0.498614173676963,
+      "delta_AP_points": 0.25449768833505915,
+      "macro_AUROC_in_training": 0.6451048628342824,
+      "macro_AUROC_held_out": 0.6469114167225352,
+      "delta_AUROC_points": -0.18065538882527932
+    },
+    "Kosovo": {
+      "n_shared_patches": 280,
+      "n_classes_used_ap": 10,
+      "macro_AP_in_training": 0.3796158728935781,
+      "macro_AP_held_out": 0.3789513093476674,
+      "delta_AP_points": 0.06645635459107124,
+      "macro_AUROC_in_training": 0.6074711710017289,
+      "macro_AUROC_held_out": 0.6053149193424742,
+      "delta_AUROC_points": 0.21562516592547043
+    }
+  },
+  "summary_delta_AP": {
+    "n": 10,
+    "median": 1.1108581453078303,
+    "iqr_25": 0.2975853975070969,
+    "iqr_75": 3.5291913880479795,
+    "wilcoxon_statistic": 0.0,
+    "wilcoxon_pvalue": 0.001953125,
+    "all_deltas": [
+      12.61891123850024,
+      4.212987381004996,
+      4.536906496270454,
+      0.8812516953704497,
+      1.340464595245211,
+      1.477803409176931,
+      0.3708160301944652,
+      0.27317518661130746,
+      0.25449768833505915,
+      0.06645635459107124
+    ]
+  },
+  "summary_delta_AUROC": {
+    "n": 10,
+    "median": 1.3425645886050108,
+    "iqr_25": 0.23810500629574682,
+    "iqr_75": 4.825189200741334,
+    "wilcoxon_statistic": 5.0,
+    "wilcoxon_pvalue": 0.01953125,
+    "all_deltas": [
+      5.790431383887928,
+      5.687289190508249,
+      5.833769868116779,
+      0.7678258069700794,
+      1.9173033702399422,
+      2.2388892314405884,
+      0.305544527406576,
+      -0.6403773940412916,
+      -0.18065538882527932,
+      0.21562516592547043
+    ]
+  },
+  "delta_scales_with_country_data_share": {
+    "note": "Spearman correlation between each country's paired Delta-AP and its share of total training data. A strong positive correlation shows the country-absence effect is real and mechanistic (proportional to how much of the training distribution is removed), not noise concentrated in one country.",
+    "spearman_rho": 0.9393939393939393,
+    "spearman_pvalue": 5.484052998513666e-05,
+    "unweighted_median_delta_AP": 1.1108581453078303,
+    "unweighted_mean_delta_AP": 2.6033270075300186,
+    "patch_count_weighted_mean_delta_AP": 6.164140072072582
+  }
+}

@@ -4,6 +4,7 @@ services:
     container_name: namenode
     volumes:
       - C:\Users\sanji\Desktop\bda_project\bigearthnet_subset:/bigearthnet_subset
+      - C:\Users\sanji\Desktop\bda_project:/workspace
       - hadoop_namenode:/hadoop/dfs/name
     environment:
       - CLUSTER_NAME=test
@@ -36,17 +37,6 @@ services:
       - ./hadoop.env
     restart: always
 
-  datanode3:
-    image: bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
-    container_name: datanode3
-    depends_on:
-      - namenode
-    volumes:
-      - hadoop_datanode3:/hadoop/dfs/data
-    env_file:
-      - ./hadoop.env
-    restart: always
-
   spark-master:
     image: bde2020/spark-master:3.3.0-hadoop3.3
     container_name: spark-master
@@ -55,6 +45,7 @@ services:
       - "7077:7077"
     volumes:
       - C:\Users\sanji\Desktop\bda_project\bigearthnet_subset:/bigearthnet_subset
+      - C:\Users\sanji\Desktop\bda_project:/workspace
     restart: always
 
   spark-worker:
@@ -64,8 +55,8 @@ services:
       - spark-master
     environment:
       - "SPARK_MASTER=spark://spark-master:7077"
-      - "SPARK_WORKER_CORES=2"
-      - "SPARK_WORKER_MEMORY=4G"
+      - "SPARK_WORKER_CORES=6"
+      - "SPARK_WORKER_MEMORY=6G"
     volumes:
       - C:\Users\sanji\Desktop\bda_project\bigearthnet_subset:/bigearthnet_subset
     restart: always
@@ -74,4 +65,3 @@ volumes:
   hadoop_namenode:
   hadoop_datanode:
   hadoop_datanode2:
-  hadoop_datanode3:
