@@ -254,13 +254,72 @@ results/optimism_gap_lr.json, results/optimism_gap_rf.json   REGENERATED (learne
 results/seed_robustness.json                             NEW
 ```
 
-### 0a.6 What's left (Week 2 remainder + Week 3)
+### 0a.6 Week 2 remainder — DONE: prior-matched resampling, hyperparameter tuning, retuned LR ladder
 
-Week 2 remainder: minimal hyperparameter tuning on S2 validation (currently
-none at all -- a rigor gap as much as an accuracy one); the prior-matched
-resampling control (§3 item 2 of the plan). Week 3: the paired
-slope/dumbbell figure (paper's headline image), F3 + dashboard for the
-college submission, the write-up, and viva prep.
+**Prior-matched resampling** (`src/python/eval/prior_matched_resampling.py`):
+per (class, S4 country) cell, subsample whichever of positives/negatives is
+in excess so the fold's positive rate matches S2's, recompute AP, average
+over 100 draws. Result: S4 macro-AP raw 37.72 -> prior-matched 37.05 -- the
+gap **grows slightly** (8.33 -> 8.99 points) under prior-matching. Prior
+shift explains **none** of the gap (a negative "-8.0% explained"), confirming
+the paired same-region control's conclusion via a completely independent
+method.
+
+**Hyperparameter tuning** (`--reg-param`/`--num-trees`/`--max-depth` flags
+added to `BinaryRelevanceRunner.scala`; grid run on S2, scored on
+**validation only**, never test): RF's defaults (numTrees=50, maxDepth=10)
+were already near-optimal (60.89% vs 60.93% for numTrees=100, confirmed;
+maxDepth=15 clearly overfits at 56.49%) -- kept as-is. **LR's default
+regParam=0.01 was genuinely suboptimal** -- regParam=0.001 beat it by 2.93
+points on validation (53.26% vs 50.33%).
+
+**Retuned LR ladder** -- given the finding was real, not noise, reran the
+full LR ladder (16 jobs: S1, S3x5, S4x10) at regParam=0.001 rather than
+document-and-ignore it:
+
+| Regime | LR untuned (reg=0.01) | LR tuned (reg=0.001) |
+|---|---|---|
+| S1 | 50.75 | 53.42 |
+| S2 | 46.05 | 48.71 |
+| S3 | 45.16 | 46.51 |
+| S4 | 37.72 | 38.02 |
+| **S2->S4 gap** | **8.33 pts** | **10.70 pts** |
+
+**This is the same pattern as the RF finding, now confirmed twice over:** the
+tuned model is better everywhere (+2.7-3 points on S1/S2/S3) but S4 barely
+moves (+0.30) -- so the gap **widens**, not narrows, once the model is
+properly tuned. Combined with the RF-vs-LR result (§0a.2), both "your
+baseline was undertuned" and "your gap is a weak-model artifact" objections
+are now closed with data. AUROC S2->S4 gap under tuning: 11.63 points (up
+from 11.04). Full numbers: `results/optimism_gap_lr_tuned.json`,
+`results/prior_matched_resampling.json`, `results/hp_tuning.json`.
+
+### 0a.7 Infrastructure note: two more incidents this week, both resolved
+
+- A Spark job hung for ~2h unable to get worker resources accepted while
+  Docker Desktop's API was silently returning 500 errors -- required a full
+  `docker desktop restart` and verifying "Alive Workers: 1" on the Spark UI
+  before relaunching.
+- Docker's WSL2 data disk (`docker_data.vhdx`) grew to **104GB** on the
+  Windows host (down to ~6GB actually used per `docker system df` --
+  deleted-but-not-trimmed blocks in the sparse virtual disk), dropping free
+  space on C: to 8.7GB. Fixed via Docker Desktop's "Reset to factory
+  defaults" (a manual `compact vdisk` via diskpart hit an unrelated stale
+  Virtual Disk Service lock requiring a reboot, then still didn't reclaim
+  space without an `fstrim` inside WSL2 first -- the factory reset was
+  faster and more reliable than either). **All code, docs, and every
+  aggregated JSON/figure result are now pushed to GitHub**
+  (`github.com/sanjit0212/BigEarthNet-Land-Cover-Classification`) as of this
+  update, specifically so a future Docker/WSL crash or disk issue cannot
+  cost more than the currently in-flight job -- raw per-run prediction
+  parquets stay local/HDFS-only (regenerable by rerunning the Scala job
+  against the features+splits, which are themselves in the repo or
+  regenerable from the archive) and are excluded via `.gitignore`.
+
+### 0a.8 What's left (Week 3)
+
+The paired slope/dumbbell figure (paper's headline image), F3 + dashboard
+for the college submission, the write-up, and viva prep.
 
 ---
 
